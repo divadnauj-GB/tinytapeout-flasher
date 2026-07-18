@@ -276,7 +276,10 @@ class SPIFlash:
 
 tt = DemoBoard.get()
 tt.mode = RPMode.ASIC_RP_CONTROL
-if DemoboardDetect.CarrierVersion != DemoboardCarrier.FPGA:
+if DemoboardDetect.CarrierVersion == DemoboardCarrier.FPGA:
+    print("FPGA device detected. Please, ensure that uio pis are not driven by the FPGA")
+else:
     tt.shuttle.tt_um_chip_rom.enable()
+
 flash = SPIFlash(tt)
 print(f"tt.flash_id={binascii.hexlify(flash.identify()).decode()}")
