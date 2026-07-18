@@ -10,6 +10,7 @@ import micropython
 import rp2
 from machine import Pin
 from ttboard.demoboard import DemoBoard
+from ttboard.boot.demoboard_detect import DemoboardDetect, DemoboardVersion, DemoboardCarrier
 from ttboard.mode import RPMode
 
 @rp2.asm_pio(out_shiftdir=0, autopull=True, pull_thresh=8, autopush=True, push_thresh=8, sideset_init=(rp2.PIO.OUT_LOW,), out_init=rp2.PIO.OUT_LOW)
@@ -274,8 +275,8 @@ class SPIFlash:
 
 
 tt = DemoBoard.get()
-#tt.mode = RPMode.ASIC_RP_CONTROL
-#tt.shuttle.tt_um_chip_rom.enable()
-#print(tt.shuttle)
+if DemoboardDetect.CarrierVersion != DemoboardCarrier.FPGA:
+    tt.mode = RPMode.ASIC_RP_CONTROL
+    tt.shuttle.tt_um_chip_rom.enable()
 flash = SPIFlash(tt)
 print(f"tt.flash_id={binascii.hexlify(flash.identify()).decode()}")
