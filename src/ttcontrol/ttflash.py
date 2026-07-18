@@ -276,5 +276,6 @@ class SPIFlash:
 tt = DemoBoard.get()
 tt.mode = RPMode.ASIC_RP_CONTROL
 #tt.shuttle.tt_um_chip_rom.enable()
+print(tt.shuttle)
 flash = SPIFlash(tt)
 print(f"tt.flash_id={binascii.hexlify(flash.identify()).decode()}")
