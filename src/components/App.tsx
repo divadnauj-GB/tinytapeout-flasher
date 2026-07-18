@@ -62,6 +62,7 @@ export function App() {
 
           <Typography variant="body1" color="text.secondary" gutterBottom>
             For Tiny Tapeout demo board with a QSPI Pmod attached.
+            For FPGA breakout, first program the FPGA making uo=ui, uio_out=0 and uio_oe=0.
           </Typography>
 
           <Show when={!supported()}>
