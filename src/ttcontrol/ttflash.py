@@ -275,8 +275,8 @@ class SPIFlash:
 
 
 tt = DemoBoard.get()
+tt.mode = RPMode.ASIC_RP_CONTROL
 if DemoboardDetect.CarrierVersion != DemoboardCarrier.FPGA:
-    tt.mode = RPMode.ASIC_RP_CONTROL
     tt.shuttle.tt_um_chip_rom.enable()
 flash = SPIFlash(tt)
 print(f"tt.flash_id={binascii.hexlify(flash.identify()).decode()}")
